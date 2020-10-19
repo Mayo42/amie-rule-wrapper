@@ -344,15 +344,17 @@ class AMIERule(object):
             self._functional_variable = str(
                     rule_dict["functional_variable"]
                     )
-            self._std_lower_bound = float(
-                    rule_dict["std_lower_bound"].replace(",", ".")
-                    )
-            self._pca_lower_bound = float(
-                    rule_dict["pca_lower_bound"].replace(",", ".")
-                    )
-            self._pca_conf_estimation = float(
-                    rule_dict["pca_conf_estimation"].replace(",", ".")
-                    )
+            # NOTE: the following is missing in the outputs of amie3,
+            # just disable parsing also for amie/amie+
+            # self._std_lower_bound = float(
+            #         rule_dict["std_lower_bound"].replace(",", ".")
+            #         )
+            # self._pca_lower_bound = float(
+            #         rule_dict["pca_lower_bound"].replace(",", ".")
+            #         )
+            # self._pca_conf_estimation = float(
+            #         rule_dict["pca_conf_estimation"].replace(",", ".")
+            #         )
         except Exception as ex:
             raise AMIERuleParseError(
                     amie_rule_line,
@@ -650,11 +652,14 @@ class AMIERule(object):
                 r"(?P<positive_examples>[^\s]+)\s+"
                 r"(?P<body_size>[^\s]+)\s+"
                 r"(?P<pca_body_size>[^\s]+)\s+"
-                r"(?P<functional_variable>[^\s]+)\s+"
-                r"(?P<std_lower_bound>[^\s]+)\s+"
-                r"(?P<pca_lower_bound>[^\s]+)\s+"
-                r"(?P<pca_conf_estimation>[^\s]+)$"
+                r"(?P<functional_variable>[^\s]+)[\s$]\s*"
                 )
+        # NOTE: the following is missing in the outputs of amie3,
+        # just disable parsing also for amie/amie+
+        # r"(?P<std_lower_bound>[^\s]+)\s+"
+        # r"(?P<pca_lower_bound>[^\s]+)\s+"
+        # r"(?P<pca_conf_estimation>[^\s]+)$"
+        # )
         pattern_expansion = r""
         for i in range(0, body_size):
             pattern_expansion += pattern_body_triple.format(i)
