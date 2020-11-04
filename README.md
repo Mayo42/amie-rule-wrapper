@@ -1,12 +1,21 @@
 # AMIE Rule Wrapper
 
-A wrapper which wraps **AMIE+** rules into a more intuitive data structure.
+A wrapper which wraps **AMIE** rules into a more intuitive data structure.
+
+## Installation as editable package via pip
+
+Clone this repository and `cd` into it. Then:
+
+```shell
+$ python3 -m pip install -r requirements.txt
+$ python3 -m pip install -e .
+```
 
 ## Python Files
 
 ### amie\_rule\_wrapper.py
 
-This module contains classes which allow to wrap rules from **AMIE+** standard output into an object oriented data structure.
+This module contains classes which allow to wrap rules from **AMIE** standard output into an object oriented data structure.
 
 Example usage:
 
